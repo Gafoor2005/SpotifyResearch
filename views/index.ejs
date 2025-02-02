@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify Data Mining</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+      text-align: center;
+      flex-direction: column;
+      padding: 5px;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: -webkit-fill-available;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    span{
+      background-color: whitesmoke;
+    padding: 0 8px;
+    white-space: no-wrap;
+    color: black;
+    border-radius: 11px;
+    padding: 2px 11px;
+    }
+    .login-btn {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 16px;
+      color: white;
+      background-color: #1DB954; /* Spotify green */
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .login-btn:hover {
+      background-color: #1ed760;
+    }
+    .inner{
+      display: flex
+;
+    padding: 25px;
+    width: 85%;
+    max-width: 300px;
+    flex-direction: column;
+    margin: 11px auto;
+    background: red;
+    color: white;
+    gap: 15px;
+    border-radius: 29px;
+    }
+    .inner p,.inner h5{
+      margin: 0;
+    display: flex
+;
+    column-gap: 5px;
+    flex-wrap: wrap;
+    row-gap: 6px;
+    align-items: center;
+    justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>We are collecting Spotify data for Data Mining</h1>
+    <p>Log in to allow us to access your Spotify data and assist with data mining.</p>
+    <a href="/login" class="login-btn">Login with Spotify</a>
+  </div>
+  <div class="container inner">
+    <p><b>Data we Collect Includes</b></p>
+    <h5> <span>Basic User Info</span> <span>Top-Artist</span> <span>Top-Tracks</span> <span>Saved-Tracks</span></h5>
+  </div>
+</body>
+</html>
