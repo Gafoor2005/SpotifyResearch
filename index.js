@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import SpotifyWebApi from "spotify-web-api-node";
 import dotenv from "dotenv";
 import path from "path";
-import { fileURLToPath } from "url";  //
+import { fileURLToPath } from "url"; 
 
 dotenv.config();
 const app = express();
@@ -108,9 +108,9 @@ app.get("/login", (req, res) => {
 
   const authorizeURL = spotifyApi.createAuthorizeURL(
     [
-      "user-read-private",
-      "user-read-email",
-      "user-top-read",
+      "user-read-private",  // user subscription
+      "user-read-email", // user email
+      "user-top-read",  // top artist and tracks
       "user-library-read", // Access liked songs
     ],
     state
@@ -124,7 +124,7 @@ async function getTopArtists(spotifyApi,timeRange = 'medium_term') {
   let limit = 50;  // Maximum limit per request
   let offset = 0;  // Starting point
   let totalFetched = 0;
-  console.log("offet");
+  console.log("getting top artists");
   
 
   // Fetch two pages of 50 artists each (total 100 records)
@@ -142,49 +142,49 @@ async function getTopArtists(spotifyApi,timeRange = 'medium_term') {
   return allArtists;  // Return the complete list of 100 top artists
 }
 async function getTopTracks(spotifyApi,timeRange = 'medium_term') {
-  let allArtists = [];
+  let allTracks = [];
   let limit = 50;  // Maximum limit per request
   let offset = 0;  // Starting point
   let totalFetched = 0;
-  console.log("offet");
+  console.log("getting top tracks");
   
 
-  // Fetch two pages of 50 artists each (total 100 records)
+  // Fetch two pages of 50 tracks each (total 100 records)
   while (totalFetched < 100) {
     const response = await spotifyApi.getMyTopTracks({ limit, offset ,time_range: timeRange});
     // console.log(response.body);
     
-    allArtists = allArtists.concat(response.body.items);  // Concatenate the results
+    allTracks = allTracks.concat(response.body.items);  // Concatenate the results
     if(response.body.next == null) break;
     totalFetched += response.body.items.length;
     offset += limit;  // Move the offset for the next page
     await delay(1000);
   }
 
-  return allArtists;  // Return the complete list of 100 top artists
+  return allTracks;  // Return the complete list of 100 top tracks
 }
 
 async function getSavedTracks(spotifyApi) {
-  let allArtists = [];
+  let allSavedTracks = [];
   let limit = 50;  // Maximum limit per request
   let offset = 0;  // Starting point
   let totalFetched = 0;
-  console.log("offet");
+  console.log("getting saved tracks");
   
 
-  // Fetch two pages of 50 artists each (total 100 records)
+  // Fetch two pages of 50 savedTracks each (total 100 records)
   while (totalFetched < 100) {
     const response = await spotifyApi.getMySavedTracks({ limit, offset});
     // console.log(response.body);
     
-    allArtists = allArtists.concat(response.body.items);  // Concatenate the results
+    allSavedTracks = allSavedTracks.concat(response.body.items);  // Concatenate the results
     if(response.body.next == null) break;
     totalFetched += response.body.items.length;
     offset += limit;  // Move the offset for the next page
     await delay(1000);
   }
 
-  return allArtists;  // Return the complete list of 100 top artists
+  return allSavedTracks;  // Return the complete list of 100 saved tracks
 }
 
 // 🔹 Step 2: Callback Route (Exchange Code for Access Token)
